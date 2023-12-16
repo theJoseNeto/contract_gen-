@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+</head>
+
+<body>
+
+  <div class="form_container">
+    <form action="/select_route" method="get">
+      <label for="opcoes">Escolha uma opção:</label>
+      <select id="opcoes" name="opcao">
+        <!-- value need be "contract_n", it's the route names! -->
+        <option value="contract_1">Opção 1</option>
+        <option value="contract_2">Opção 2</option>
+        <option value="contract_3">Opção 3</option>
+      </select>
+      <br>
+      <input type="submit" value="Enviar">
+    </form>
+  </div>
+
+</body>
+
+</html>
