@@ -1,7 +1,12 @@
+const firebaseConfig = require('./config/firebase');
 const express = require('express');
 const app = express();
-const ejs = require('ejs');
 const routes = require("./routes/contract.routes");
+
+// Firebase
+const { initializeApp } = require('firebase/app');
+const { getFirestore, collection, getDocs } = require('firebase/firestore/lite');
+initializeApp(firebaseConfig);
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
