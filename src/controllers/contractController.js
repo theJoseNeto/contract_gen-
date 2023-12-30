@@ -2,14 +2,21 @@ const cnpjConsulta = require("../modules/cnpjSearch");
 const contract_content = require("../data/contract.data");
 const genPdf = require("../modules/pdfgen");
 const createEJSFile = require("../modules/genEjs");
+const { getAuth } = require("firebase/auth");
 
 module.exports = {
+
     index: (req, res) => {
-        res.render("index.ejs", { title: "Bem-vindo(a)" })
+        const auth = getAuth();
+        const user = auth.currentUser;
+        if (user) {return res.render("index.ejs", { title: "", message: "" })}
+        else return res.redirect("/singnup");
     },
 
     contract1: (req, res) => {
+
         res.render("./contract_types/ct_1.ejs")
+
     },
 
     contract2: (req, res) => {
@@ -22,19 +29,23 @@ module.exports = {
 
     gencontract: async (req, res) => {
 
-        const { dono, razao_social, cnpj, nome_fantasia, endereco } = await cnpjConsulta.search(req.body.cnpj);
-        const { cpf, rg, email } = req.body;
-        const fileName = "contractType1"
+        try {
+            const { nome, cpf, rg, email, cnpj } = req.body;
+            const { dono, endereco } = await cnpjConsulta.search(nome, cnpj);
 
-        const ejsContent = contract_content(dono, endereco, cpf, rg, email)
-        await createEJSFile(ejsContent, fileName)
+            const fileName = "contractType1"
+            const ejsContent = contract_content(dono, endereco, cpf, rg, email)
+            await createEJSFile(ejsContent, fileName)
 
-        await genPdf("http://localhost:3000/prestacaoServico");
-        await res.redirect(`/download_file?fileName=${fileName}`);
+            await genPdf("http://localhost:3000/prestacaoServico");
+            await res.redirect(`/download_file?fileName=${fileName}`);
+
+        } catch (error) {
+            console.error(error)
+        }
     },
 
     createdContract: async (req, res) => {
         res.render("created_contracts/contractType1")
     }
 };
-

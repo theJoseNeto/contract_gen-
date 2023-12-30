@@ -1,28 +1,32 @@
 const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
-
+const { join } = require("path");
 module.exports = {
-    signupPage: async (req, res) => {
-        res.render("./auth/login.ejs")
+
+    signinpPage: async (req, res) => {
+        res.render("./auth/login.ejs", { message: "", filePAth: join(__dirname, "./public/civilbuild.png") });
     },
 
-    signup: async (req, res) => {
+    signin: async (req, res) => {
 
         const auth = getAuth();
         const { email, password } = req.body;
 
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                console.log("usuário autenticado"). 
-                res.render("logado")
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
+        if (email && password) {
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+
+                    return res.redirect("/contracts")
+                })
+                .catch(async (error) => {
+                    await req.flash("Error", "Credenciais inválidas");
+                    const message = req.flash("Error")
+                    return res.render("auth/login.ejs", { message });
+                })
 
 
-
+        } else {
+            req.flash("Error")
+        }
     }
 }

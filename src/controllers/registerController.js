@@ -5,18 +5,18 @@ const { getAuth, createUserWithEmailAndPassword } = require("firebase/auth")
 
 module.exports = {
 
-    signinpPage: async (req, res) => {
+    signupPage: async (req, res) => {
         res.render("./auth/register.ejs");
     },
 
-    signin: async (req, res) => {
-        
+    signup: async (req, res) => {
+
         const auth = getAuth();
         const { email, password } = req.body;
 
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                res.redirect("/login"); 
+                res.redirect("/login");
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -28,3 +28,5 @@ module.exports = {
     }
 
 }
+
+// TODO: Desativar este controller por enquanto mas antes: Seguir lista de afazeres do loginController aplicando o que é cabível aqui

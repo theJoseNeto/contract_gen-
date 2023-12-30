@@ -5,22 +5,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
+    <style>
+        body {
+            font-family: 'San Francisco', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #2a2a2a;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2a2a2a;
+        }
+    </style>
 </head>
 
 <body>
-
     <form action="/gen_contract1" method="post">
 
-        <input type="text" name="cnpj" placeholder="CNPJ">
-        <input type="text" name="cpf" placeholder="cpf">
-        <input type="text" name="rg" placeholder="rg">
-        <input type="email" name="email" placeholder="email">
+                <input type="text" name="nome" placeholder="Nome completo do contratante" required>
+                <input type="text" name="cnpj" placeholder="CNPJ" required maxlength="14">
+                <input type="text" name="cpf" placeholder="cpf" required>
+                <input type="text" name="rg" placeholder="rg" required>
+                <input type="email" name="email" placeholder="email" required>
 
-        <input type="submit" value="Próximo">
-
-    
+                <input type="submit" value="Próximo">
     </form>
-
 </body>
+
 
 </html>
