@@ -9,7 +9,7 @@ module.exports = {
     index: (req, res) => {
         const auth = getAuth();
         const user = auth.currentUser;
-        if (user) {return res.render("index.ejs", { title: "", message: "" })}
+        if (user) { return res.render("index.ejs", { title: "", message: "" }) }
         else return res.redirect("/singnup");
     },
 
@@ -34,8 +34,12 @@ module.exports = {
             const { dono, endereco } = await cnpjConsulta.search(nome, cnpj);
 
             const fileName = "contractType1"
+            const filePath = "../views/created_contracts"
+
             const ejsContent = contract_content(dono, endereco, cpf, rg, email)
-            await createEJSFile(ejsContent, fileName)
+            // TODO: Armazenar o conteúdo desse contrato criado no banco de dados   
+          
+            await createEJSFile(ejsContent, fileName, filePath)
 
             await genPdf("http://localhost:3000/prestacaoServico");
             await res.redirect(`/download_file?fileName=${fileName}`);

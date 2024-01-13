@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>juridico </title>
+
+    <style>
+        body {
+            font-family: 'San Francisco', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+
+        .form_container form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            width: 200px;
+            height: 50px;
+            padding: 14px 20px;
+            margin: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: #2a2a2a;
+        }
+
+        .btn-primary:hover {
+            background-color: #2a2a2a;
+        }
+
+        .btn-success {
+            background-color: #5cb85c;
+        }
+
+        .btn-success:hover {
+            background-color: #4cae4c;
+        }
+
+        .btn-danger {
+            background-color: #d9534f;
+        }
+
+        .btn-danger:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+
+<body>
+    <%- contract %>
+        <div class="form_container">
+
+            <form action="/select" method="get">
+                <input type="submit" name="aprovado" class="btn btn-success" value="Aprovado">
+                <input type="submit" name="negado" class="btn btn-danger" value="Negado">
+            </form>
+        </div>
+</body>
+
+</html>

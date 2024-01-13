@@ -61,7 +61,7 @@
   <div class="messages">
     <% if (message) { %>
       <div class="error-message">
-        <%= message = "TESTE" %>
+        <%= message="TESTE" %>
       </div>
       <% } %>
   </div>
@@ -70,8 +70,8 @@
       <h2>Selecione um tipo de contrato</h2>
       <label for="opcoes">Escolha uma opção:</label>
       <select id="opcoes" name="opcao">
-        <!-- value need be "contract_n", it's the route names! -->
-        <option value="contract_1">Opção 1</option>
+        <!-- "value" need be "contract_n", it's the route names! -->
+        <option value="contract_1">Prestação de serviço</option>
         <option value="contract_2">Opção 2</option>
         <option value="contract_3">Opção 3</option>
       </select>

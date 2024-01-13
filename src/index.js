@@ -7,7 +7,7 @@ const configSession = require("./config/session/express.session");
 const session = require("express-session");
 const flash = require("connect-flash");
 const cookieParser = require('cookie-parser');
-
+const connnection = require("./")
 const PORT = process.env.PORT || 3000;
 // Firebase
 const firebaseConfig = require('./config/firebase');
